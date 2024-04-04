@@ -9,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Path("/swapi")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
 public class SwapiResource {
 
     static final Logger LOGGER = LoggerFactory.getLogger(SwapiResource.class);

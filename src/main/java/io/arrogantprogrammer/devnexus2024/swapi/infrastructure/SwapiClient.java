@@ -48,4 +48,6 @@ public interface SwapiClient {
     @GET
     @Path("/starships/{id}")
     StarshipRecord getStarships(@PathParam("id") int id);
+
+    PersonRecord getRandomPerson();
 }

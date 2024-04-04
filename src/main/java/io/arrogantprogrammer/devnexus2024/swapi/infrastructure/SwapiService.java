@@ -19,6 +19,6 @@ public class SwapiService {
     }
 
     public PersonRecord getPersonById(int i) {
-        return swapiClient.getPerson(i);
+        return swapiClient.getRandomPerson();
     }
 }
