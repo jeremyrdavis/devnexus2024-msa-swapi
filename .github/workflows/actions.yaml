@@ -39,10 +39,10 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Build Docker image
-        run: docker build --file src/main/docker/Dockerfile.jvm -t devnexus2024-msa-swapi:${POM_VERSION} .
+        run: docker build --file src/main/docker/Dockerfile.jvm -t devnexus2024-msa-swapi .
 
       - name: Push Docker image
         run: |
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-          docker tag devnexus2024-msa-swapi ${{ secrets.DOCKERHUB_USERNAME }}/devnexus2024-msa-swapi:latest
+          docker tag devnexus2024-msa-swapi ${{ secrets.DOCKERHUB_USERNAME }}/devnexus2024-msa-swapi:${POM_VERSION}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/devnexus2024-msa-swapi:${POM_VERSION}
