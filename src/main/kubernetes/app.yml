@@ -1,0 +1,69 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.quarkus.io/quarkus-version: 3.8.3
+    app.quarkus.io/commit-id: 872c84a1d90b16237480d43878348737d7329c97
+    app.quarkus.io/vcs-uri: https://github.com/jeremyrdavis/devnexus2024-msa-swapi.git
+    app.quarkus.io/build-timestamp: 2024-04-05 - 10:46:37 +0000
+  labels:
+    app.kubernetes.io/name: devnexus2024-msa-swapi
+    app.kubernetes.io/version: 0.0.1
+    app.kubernetes.io/managed-by: quarkus
+  name: devnexus2024-msa-swapi
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/name: devnexus2024-msa-swapi
+    app.kubernetes.io/version: 0.0.1
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.quarkus.io/quarkus-version: 3.8.3
+    app.quarkus.io/commit-id: 872c84a1d90b16237480d43878348737d7329c97
+    app.quarkus.io/vcs-uri: https://github.com/jeremyrdavis/devnexus2024-msa-swapi.git
+    app.quarkus.io/build-timestamp: 2024-04-05 - 10:46:37 +0000
+  labels:
+    app.kubernetes.io/name: devnexus2024-msa-swapi
+    app.kubernetes.io/version: 0.0.1
+    app.kubernetes.io/managed-by: quarkus
+  name: devnexus2024-msa-swapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: devnexus2024-msa-swapi
+      app.kubernetes.io/version: 0.0.1
+  template:
+    metadata:
+      annotations:
+        app.quarkus.io/quarkus-version: 3.8.3
+        app.quarkus.io/commit-id: 872c84a1d90b16237480d43878348737d7329c97
+        app.quarkus.io/vcs-uri: https://github.com/jeremyrdavis/devnexus2024-msa-swapi.git
+        app.quarkus.io/build-timestamp: 2024-04-05 - 10:46:37 +0000
+      labels:
+        app.kubernetes.io/managed-by: quarkus
+        app.kubernetes.io/name: devnexus2024-msa-swapi
+        app.kubernetes.io/version: 0.0.1
+    spec:
+      containers:
+        - env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          image: docker.io/jeremydavis/devnexus2024-msa-swapi:0.0.1
+          imagePullPolicy: Always
+          name: devnexus2024-msa-swapi
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
