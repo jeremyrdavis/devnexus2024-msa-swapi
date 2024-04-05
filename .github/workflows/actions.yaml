@@ -45,4 +45,4 @@ jobs:
         run: |
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
           docker tag devnexus2024-msa-swapi ${{ secrets.DOCKERHUB_USERNAME }}/devnexus2024-msa-swapi:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/devnexus2024-msa-swapi:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/devnexus2024-msa-swapi:${POM_VERSION}
